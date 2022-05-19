@@ -1,0 +1,11 @@
+{% extends "amazon_niche_finder/components/detail.html" %}
+<!--================ BEGIN CATEGORY DETAIL PAGE ==========-->
+{% block title %}
+  {{category.cat_name}}
+{% endblock title %}
+{% block h1 %}{{category.cat_name}}
+{% endblock h1 %}
+{% block content %}
+  {% include "amazon_niche_finder/components/bestseller-detail-content.html" %}
+{% endblock content %}
+<!--================ CATEGORY DETAIL PAGE ==========-->

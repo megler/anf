@@ -1,0 +1,104 @@
+{% load mptt_tags %}
+<!--================ SUB CATEGORY TREE AND PRODUCT LISTING DETAILS ==========-->
+<section class="light-bg booking-details_wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 responsive-wrap">
+        <div class="booking-checkbox_wrap">
+          <h5>Bestseller Categories for
+            {{category.cat_name}}</h5>
+          <ul id="myUL">
+            <span>{{ category.cat_name }}
+            </span>
+            {% for sub, structure in subs|tree_info %}
+              {% if structure.new_level %}
+                <span class="caret parent"></span>
+                <ul class="nested">
+                  <li>
+                  {% else %}
+                  </li>
+                  <li>
+                  {% endif %}
+                  {% if sub.cat_bestsellers_link %}
+                    <a href="{% url 'show_subcats' sub.id %}">{{ sub.cat_name }}</a>
+                  {% else %}
+                    {{ sub.cat_name }}
+                  {% endif %}
+                  {% for level in structure.closed_levels %}
+                  </li>
+                </ul>
+              {% endfor %}
+            {% endfor %}
+        </ul>
+      </div>
+      <div class="booking-checkbox_wrap mt-2 kw-search">
+        <h6 class="text-center">Enter Keyword Phrase To Get Competition Metrics</h6>
+        <div class="input-group d-flex justify-content-center mt-3">
+          <div id="kw-comp-search">
+            <form id="kw-comp-form">
+              <div class="input-group">
+                <div class="form-outline">
+                  <input type="search" id="kw-comp-input" class="form-control">
+                  <label class="form-label" for="kw-comp-input">Search</label>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+            <div>
+              <ul id="kw-error"></ul>
+            </div>
+            <div class="mt-2">
+              <div id="volume"></div>
+              <div id="all-in-title"></div>
+              <div id="golden-ratio"></div>
+              <div id="credits-left"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 responsive-wrap">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for item in page_obj %}
+          <div class="col">
+            <div class="card h-100">
+              <img src="{{item.image}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{item.title}}</h5>
+                <p class="card-text">
+                  <p>Price:
+                    {{item.price.raw}}</p>
+                  <a href="{{item.link}}" target="_blank">Amazon Link</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="pagination">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+            Page
+            {{ page_obj.number }}
+            of
+            {{ page_obj.paginator.num_pages }}.
+          </span>
+
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!--//END SUB CATEGORY TREE AND PRODUCT LISTING DETAILS -->

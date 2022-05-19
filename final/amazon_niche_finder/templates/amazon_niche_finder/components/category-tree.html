@@ -1,0 +1,23 @@
+{% load mptt_tags %}
+<!--================ BEGIN FULL CATEGORY TREE ===============-->
+<ul id="myUL">
+  {% for category, structure in categories|tree_info %}
+    {% if structure.new_level and category.level > 0 %}
+      <span class="caret parent"></span>
+      <ul class="nested">
+        <li>
+        {% else %}
+        </li>
+        <li>
+        {% endif %}
+        {% if category.cat_bestsellers_link %}
+          <a href="{% url 'show_subcats' category.id %}">{{ category.cat_name }}</a>
+        {% else %}
+          {{ category.cat_name }}
+        {% endif %}
+        {% for level in structure.closed_levels %}
+        </li>
+      </ul>
+    {% endfor %}
+  {% endfor %}
+  <!--================ END CATEGORY TREE ==================-->

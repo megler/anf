@@ -1,0 +1,43 @@
+{% extends "amazon_niche_finder/base.html" %}
+{% load static %}
+<!-- Page Title -->
+{% block title %}{% endblock title %}
+
+{%block body%}
+
+  <!--============================= HEADER =============================-->
+  <section class="insideBackImg d-flex align-items-center">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12">
+          <div class="slider-title_box">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="slider-content_wrap">
+                  <h1>
+                    {% block h1 %}{% endblock h1 %}
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--//END HEADER -->
+  <!--============================= RESERVE AREA FOR FUTURE CONTENT =============================-->
+
+  <!-- Change reverve-block div to section if you use this -->
+  <div class="reserve-block">
+    <div class="container">
+      <div class="row"></div>
+    </div>
+  </div>
+  <!--//END RESERVE AREA -->
+  <!--============================= CONTENT =============================-->
+  {% block content %}{% endblock content %}
+  <!--//END CONTENT -->
+
+{% endblock body%}

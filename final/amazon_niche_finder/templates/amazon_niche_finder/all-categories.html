@@ -1,0 +1,19 @@
+{% extends "amazon_niche_finder/components/detail.html" %}
+<!--================ BEGIN FULL CATEGORY TREE ==========-->
+{% block title %}
+  Full Category Listing
+{% endblock title %}
+{% block h1 %}Category Directory
+{% endblock h1 %}
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center mb-3">
+      <h2 class="text-center">Complete Amazon Category Listing</h2>
+      <h5 class="text-center">If there is no link, then category does not have a Bestseller Page.</h3>
+      <p class="text-center text-danger">Click any link to get more detail about a category's bestsellers</p>
+      <div class="col-6">{% include "amazon_niche_finder/components/category-tree.html" %}</div>
+    </div>
+  </div>
+
+{% endblock content %}
+<!--================ END FULL CATEGORY TREE ==========-->
